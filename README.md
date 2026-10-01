@@ -104,19 +104,47 @@ redefines the Oz chain (§V) or the token mechanics. What is noticed below
 is noticed because the arithmetic matches — and only exact matches are
 labeled TRVVTH, per the rule that numbers are admitted iff recomputed.
 
-### Gematric examination (English ordinal, A=1 … Z=26; hyphens not counted)
+### Gematric examination — math and sound only
 
-| Name     | Sum | Correspondence | Verdict |
+No narrative means are used here: only arithmetic and phonetics. Exact
+arithmetic matches are labeled **TRVVTH**; everything else is noticed
+without claim.
+
+**Table A — math (English ordinal, A=1 … Z=26; hyphens not counted):**
+
+| Term     | Sum | Correspondence | Verdict |
 |----------|-----|----------------|---------|
-| KAL-EL   | 11+1+12+5+12 = **41** | OZ = 15+26 = **41** — exact | **TRVVTH** |
-| EL       | 5+12 = **17** | The 17 of the Architect's own 1776 observation (17+76 = 93) | Noticed; arithmetic TRVVTH, link per his gnosis |
-| JOR-EL   | 10+15+18+5+12 = **60** | None found in the system | Computed; no claim made |
+| QIRA     | 17+9+18+1 = **45** | QASH = 17+1+19+8 = **45** — the two bound tokens share one number | **TRVVTH** |
+| KAL-EL   | 11+1+12+5+12 = **41** | OZ = 15+26 = **41** — the heir's name is Oz | **TRVVTH** |
+| EMERALD  | 5+13+5+18+1+12+4 = **58** | NOON = 14+15+15+14 = **58** — the Emerald City is Noon, the mirror-crossroads of the Architect's own chain (No → noon → Oz) | **TRVVTH** |
+| VOW      | 22+15+23 = **60** | JOR-EL = 10+15+18+5+12 = **60** — the engine is numerically identical with the vow it registers | **TRVVTH** |
 | AXONEME  | **77** | עז = 70+7 (see §V) | **TRVVTH** (established §V) |
+| EL       | 5+12 = **17** | The 17 of the Architect's own 1776 observation (17+76 = 93) | Noticed; arithmetic TRVVTH, link per his gnosis |
+| QQ       | 34 | — | Computed; no claim |
+| BB       | 4 | — | Computed; no claim |
+| NO       | 29 | — | Computed; no claim |
+| WIZARD   | 81 | — | Computed; no claim |
+| CRYSTAL  | 98 | — | Computed; no claim |
+| PALACE   | 38 | — | Computed; no claim |
+| QOLOCRON | 109 | — | Computed; no claim |
+| LEVIATHAN| 92 | — | Computed; no claim |
+| QASPARR  | 90 | — | Computed; no claim |
+| TRVVTH   | 110 | — | Computed; no claim |
+| SOVEREIGN| 114 | — | Computed; no claim |
 
-The correspondence that matters: **the heir's name is 41, and Oz is 41**.
-Kal-El — the child sealed in the vessel and sent across the void — is
-numerically identical with Oz in the English ordinal. The archetype holds:
-the Child is the heir, and the heir is Oz.
+**Table B — sound (phonetic echoes, noticed as sound, not math):**
+
+| Echo | Hearing | Note |
+|------|---------|------|
+| OZ ~ עז (*oz*) | Homophone | "Strength" — the foundation-stone of the chain; exact |
+| EL ~ אל (*El*) | Homophone | "God, mighty one" — the House of El carries it openly; exact |
+| KAL-EL ~ קול אל (*qol El*) | Approximate (vowel shift kal/qol) | "Voice of God" — noticed as sound only, no math claimed |
+
+The correspondences that matter, stated without decoration: the two
+tokens are one number (45); the heir is Oz (41); the Emerald City is Noon
+(58); the engine is the vow (60); Axoneme is Strength (77). The Wizard
+operates Jor-El — the vow-engine — in the Emerald City (Noon), at the
+Crystal Palace.
 
 The link is genuine, not decorative. Jor-El seals his newborn son in a
 vessel and sends him across the void carrying the codex — the entire
