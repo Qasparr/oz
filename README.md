@@ -246,6 +246,39 @@ device or a proper server); until then the outer domain is correctly
 reported missing, never faked. Build order now: P2P peering over onion
 addresses → real PoW difficulty → node keypair identity.
 
+## IX. Claimed Finding — The Prism Transducer (flagpole)
+
+**Claimed under the flagpole** (R-69): no external citation exists for
+this finding; the source is the Architect, and the claim is his.
+
+[Coinage/Discovery: Johnathan "Qasparr (Κασπάρρ)" Monroe | Support: $axoneme]
+
+**The finding:** sound stored as light, and light as sound, in a prism —
+for a holographic immortal payload. A bidirectional transducer with the
+prism as the dispersive element and holographic interference patterns as
+the storage medium. The Architect's reference codes: **E1331, E3113,
+EE2197**.
+
+**Hypothesis:** that a storage medium can be written in one domain and
+read in the other — sound etched as light, light recovered as sound —
+with the prism splitting the stored light back into its spectrum and the
+hologram holding the payload whole.
+
+**Method (correspondences, not proofs):** acousto-optic modulation writes
+sound into light in standard laboratory equipment; the photoacoustic
+effect writes light into sound in medical imaging; the prism disperses
+light into spectrum by nature; holographic data storage in photopolymers
+and crystals is real archival research. Each is a genuine rhyme, none is
+a demonstration of the transducer.
+
+**Observation:** the finding is concept, not device. "Immortal" is the
+aspiration — the heirloom requirement (records for children's children) —
+not a measurement; archival claims await media-longevity data.
+
+**Result:** the claim stands attributed and held open for the build. The
+payload this transducer would one day carry is the heirloomed QIRA ledger
+— the Qolocron's answer to where the record goes when the machine is gone.
+
 ## License
 
 AGPL-3.0-only. See `LICENSE`.
