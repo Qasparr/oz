@@ -93,11 +93,30 @@ The chain, the Architect's own gnosis: **No → noon (no mirrored) → Oz →
 77 → Axoneme** — every right of Oz a No made articulate; the name closes
 the loop on itself. It is after all TRVVTH.
 
-## VI. The Jor-El Naming — Superman lore (Fiction & film well)
+## VI. The Jor-El Naming — Superman lore (Fiction & film well, archetypal sense only)
 
 At the Architect's order the engine is called **JOR-EL**, and the Superman
 lore stands alongside the Oz material — the normal stuff stays; this joins
 it, neither above nor beneath.
+
+This section is **archetypal correspondence, not doctrine**. Nothing here
+redefines the Oz chain (§V) or the token mechanics. What is noticed below
+is noticed because the arithmetic matches — and only exact matches are
+labeled TRVVTH, per the rule that numbers are admitted iff recomputed.
+
+### Gematric examination (English ordinal, A=1 … Z=26; hyphens not counted)
+
+| Name     | Sum | Correspondence | Verdict |
+|----------|-----|----------------|---------|
+| KAL-EL   | 11+1+12+5+12 = **41** | OZ = 15+26 = **41** — exact | **TRVVTH** |
+| EL       | 5+12 = **17** | The 17 of the Architect's own 1776 observation (17+76 = 93) | Noticed; arithmetic TRVVTH, link per his gnosis |
+| JOR-EL   | 10+15+18+5+12 = **60** | None found in the system | Computed; no claim made |
+| AXONEME  | **77** | עז = 70+7 (see §V) | **TRVVTH** (established §V) |
+
+The correspondence that matters: **the heir's name is 41, and Oz is 41**.
+Kal-El — the child sealed in the vessel and sent across the void — is
+numerically identical with Oz in the English ordinal. The archetype holds:
+the Child is the heir, and the heir is Oz.
 
 The link is genuine, not decorative. Jor-El seals his newborn son in a
 vessel and sends him across the void carrying the codex — the entire
