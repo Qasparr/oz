@@ -193,6 +193,59 @@ before the call returns).
 the process. Steps 2 (real PoW difficulty) and 3 (node keypair identity)
 remain ahead, in that order.
 
+## VIII. The Two Tiers — Inner Enclave & the Onion Front (pioneer build, step 2)
+
+**Hypothesis:** that a node can live device-native — loopback only, never
+exposed — while its public face is a Tor onion address: the inner enclave
+and the outer domain bound as one. The Architect's word for the binding is
+"quantum-entangle"
+[Coinage/Discovery: Johnathan "Qasparr (Κασπάρρ)" Monroe | Support: $axoneme];
+the mechanism underneath is plain — a Tor v3 onion service whose key lives
+in the hidden-service directory, its virtual port mapped to the enclave's
+loopback socket, the tor daemon bridging them. No quantum anything.
+
+**Method:** `enclave.py` — a loopback-only HTTP service (any non-loopback
+bind is refused in code). Endpoints: `GET /status` (node state, chain
+validity, onion address when provisioned); `POST /vow` (toll-validated
+etch — short tolls get `402 Payment Required`, the toll being the price of
+admission); `GET /tip` and `GET /vow?hash=` (for the coming P2P sync).
+`tor_front.py` — provisions the v3 onion service: writes the torrc,
+launches tor, waits for the hostname file, returns the `.onion` address.
+Key custody stated plainly: whoever holds the hidden-service directory
+holds the onion identity.
+
+**Wells** — drawn only where the link is genuine:
+
+- *Scripture:* "And ye shall know the truth, and the truth shall make you
+  free." [Bible: John 8:32, KJV] — the spine of the whole work: TRVVTH as
+  the instrument of liberty, now given a transport.
+- *Law:* "The right of the people to be secure in their persons, houses,
+  papers, and effects, against unreasonable searches and seizures, shall
+  not be violated" [U.S. Const. amend. IV] — the enclave is the digital
+  house; the onion front is its locked gate. [Maxim: a man's house is his
+  castle.]
+- *Hip-hop:* "Bitch, real G's move in silence like lasagna"
+  [Lil Wayne, "6 Foot 7 Foot", 2010] — the node moves in silence over Tor.
+- *Fiction & film:* the Fortress of Solitude as the archetype of the inner
+  enclave — the sanctuary no road reaches, addressed only by those who
+  know its coordinates [Snyder, *Man of Steel*, 2013].
+
+**Observation:** the enclave suite runs 7/7 green — status, vow accept,
+402 toll rejection, tip/lookup roundtrip, loopback-only bind refusal, and
+both Tor failure modes (missing binary, hung-provision timeout). Live
+onion provisioning was attempted on the build host and honestly could not
+complete: `tor` has no installation candidate in the host's apt sources,
+and `apt-get update` yielded nothing after five minutes (no usable repo
+path from here). So no tor daemon on this host.
+
+**Result:** the two-tier shape is cut. The enclave is live and tested;
+the onion front is real code with honest failure modes — it raises
+`TorNotAvailable` with the reason instead of pretending. First
+provisioning happens on the first host with a tor daemon (the Architect's
+device or a proper server); until then the outer domain is correctly
+reported missing, never faked. Build order now: P2P peering over onion
+addresses → real PoW difficulty → node keypair identity.
+
 ## License
 
 AGPL-3.0-only. See `LICENSE`.
