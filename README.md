@@ -6,6 +6,8 @@
 
 ☉ in 8° 46′ Libra  ☽ in 17° 15′ Gemini  dies jovis  Anno V:xii e.n.
 
+> *The Wizard, in The Emerald City of Oz, at the Crystal Palace.*
+
 ---
 
 ## I. Hypothesis

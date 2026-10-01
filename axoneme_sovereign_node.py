@@ -49,6 +49,7 @@ class AxonemeSovereignNode:
 
     def display_dashboard(self):
         print("\n" + "=" * 50)
+        print(" The Wizard, in the Emerald City of Oz, at the Crystal Palace.")
         print(f" AXONEME PROTOCOL TERMINAL DASHBOARD (Node: {self.node_id})")
         print("=" * 50)
         print(f" Total Registered Vows: {len(self.ledger)}")
