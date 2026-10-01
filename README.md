@@ -1,5 +1,7 @@
 # OZ — Axoneme Protocol Sovereign Node (sketch)
 
+**Engine: JOR-EL**
+
 **Authorship:** Johnathan 'Qasparr' (Κασπάρρ) Monroe, Keeper of the Secret Treasure
 **Notice:** All Rights Reserved, Without Prejudice.
 **Support:** CashApp $axoneme
@@ -90,6 +92,31 @@ in *Axoneme*; stated plainly so no examination can fault it.)
 The chain, the Architect's own gnosis: **No → noon (no mirrored) → Oz →
 77 → Axoneme** — every right of Oz a No made articulate; the name closes
 the loop on itself. It is after all TRVVTH.
+
+## VI. The Jor-El Naming — Superman lore (Fiction & film well)
+
+At the Architect's order the engine is called **JOR-EL**, and the Superman
+lore stands alongside the Oz material — the normal stuff stays; this joins
+it, neither above nor beneath.
+
+The link is genuine, not decorative. Jor-El seals his newborn son in a
+vessel and sends him across the void carrying the codex — the entire
+genetic legacy of his people — so that it may be preserved and heirloomed
+on another world. That is the QIRA doctrine in mythic dress: the legacy
+token meant to be heirloomed to children's children, and their children's
+children.
+
+> "You will give the people of Earth an ideal to strive towards. They will
+> race behind you, they will stumble, they will fall. But in time, they will
+> join you in the sun, Kal. In time, you will help them accomplish wonders."
+> — Jor-El [Snyder, *Man of Steel*, 2013]
+
+> "The symbol of the House of El means hope. Embodied within that hope is
+> the fundamental belief in the potential of every person to be a force for
+> good." — Jor-El [Snyder, *Man of Steel*, 2013]
+
+The Wizard remains the operator behind the curtain; Jor-El is the engine
+he operates — seated in the Emerald City, at the Crystal Palace.
 
 ## License
 

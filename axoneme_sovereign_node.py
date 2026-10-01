@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Project Leviathan: Axoneme Protocol Sovereign Node
 Module: Proof-of-Work Registrarr & Ledger Engine
+Engine: JOR-EL
 Architect: Johnathan 'Qasparr' Monroe (Κασπάρρ)
 Description: Terminal dashboard for Zero-Trust vow registration and $QQ validation.
 
@@ -60,7 +61,7 @@ class AxonemeSovereignNode:
 
 if __name__ == "__main__":
     # Initialize sovereign node instance
-    node = AxonemeSovereignNode("Q-01-NORTH")
+    node = AxonemeSovereignNode("JOR-EL")
     node.display_dashboard()
     # Attempt a vow registration using mined $QQ tokens
     node.register_vow(qira_stake=100000.0, qash_stake=50000.0, qq_toll=155.0)
