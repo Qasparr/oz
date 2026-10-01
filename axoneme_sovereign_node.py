@@ -29,10 +29,15 @@ class AxonemeSovereignNode:
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
         print(f"[{timestamp}] [AXONEME-NODE:{self.node_id}] {message}")
 
+    @staticmethod
+    def toll_required(qira_stake: float, qash_stake: float) -> float:
+        """Single source of the kinetic toll rule: 1 $QQ per 1000 staked."""
+        return (qira_stake + qash_stake) / 1000.0
+
     def register_vow(self, qira_stake: float, qash_stake: float, qq_toll: float) -> bool:
         self.log_status("Initiating Exchange of Vows validation...")
         # Calculate required kinetic toll based on stake volume
-        required_toll = (qira_stake + qash_stake) / 1000.0
+        required_toll = self.toll_required(qira_stake, qash_stake)
         if qq_toll < required_toll:
             self.log_status(
                 f"REJECTED: Insufficient $QQ mass. Provided: {qq_toll}, Required: {required_toll}"

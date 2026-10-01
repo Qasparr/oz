@@ -100,7 +100,7 @@ class _Handler(BaseHTTPRequestHandler):
                 "error": "fields required: qira_reserve, qash_liquidity, qq_consumed"
             })
             return
-        required = (qira + qash) / 1000.0
+        required = node.toll_required(qira, qash)
         if toll < required:
             # 402 Payment Required: the toll is the price of admission.
             _json(self, 402, {

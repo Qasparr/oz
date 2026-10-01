@@ -190,8 +190,8 @@ malformed line fail-closed; durability without close (the etch hits disk
 before the call returns).
 
 **Result:** limit 1 of the red-pen list is resolved. The ledger outlives
-the process. Steps 2 (real PoW difficulty) and 3 (node keypair identity)
-remain ahead, in that order.
+the process. (The build order was revised by the Architect's directive —
+onion service before P2P; the road ahead is §VIII's closing line.)
 
 ## VIII. The Two Tiers — Inner Enclave & the Onion Front (pioneer build, step 2)
 
