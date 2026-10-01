@@ -51,8 +51,9 @@ with cause stated. These are the observed facts, and only these.
 
 What is *not* observed — the honest limits, the red-pen list:
 
-1. **The ledger is in-memory only.** The process exits and every vow is
-   gone. First real step: an append-only JSONL ledger, fsync'd per etch.
+1. ~~**The ledger is in-memory only.**~~ **RESOLVED 2026-10-01** — vows now
+   persist to an append-only JSONL ledger (`ledger.py`), fsync'd per etch,
+   hash-chained, fail-closed on corruption; 7/7 tests green (see §VII).
 2. **No actual proof-of-work.** The "toll" is a ratio check, not hashcash;
    no difficulty target constrains the vow hash. A real registrarr binds
    the toll to work via a leading-zero difficulty on the hash itself.
@@ -70,8 +71,9 @@ What is *not* observed — the honest limits, the red-pen list:
 
 A working sketch of the sovereign node engine — honestly labeled, fit for
 a public draft, not for deployment, audit, or consensus. Build order:
-append-only ledger → real PoW difficulty → Ed25519 node identity with
-signed records and replay nonces → specified downstream sink.
+~~append-only ledger~~ **done (§VII)** → real PoW difficulty → Ed25519
+node identity with signed records and replay nonces → specified
+downstream sink.
 
 ## V. The Examination — why OZ, and that Axoneme is also 77
 
@@ -164,6 +166,32 @@ children.
 
 The Wizard remains the operator behind the curtain; Jor-El is the engine
 he operates — seated in the Emerald City, at the Crystal Palace.
+
+## VII. The Persistent Ledger — pioneer build, step 1
+
+**Hypothesis:** that vow records can survive the death of the process —
+etched once, readable across restarts, tamper-evident by construction.
+
+**Method:** `ledger.py` — an `AppendOnlyLedger` class. Each etch assigns a
+sequence number and a `prev_hash` chain link, hashes the canonical record
+(sorted keys, no whitespace) with SHA3-256, appends one JSON line, and
+calls `os.fsync` before returning. Loading replays the file and re-verifies
+every hash; any malformed line or hash mismatch raises `LedgerCorruptError`
+naming the exact line — fail-closed, never fail-open. The node
+(`AxonemeSovereignNode`) now replays treasury totals from disk on startup
+and reports chain state on the dashboard.
+
+**Observation:** `test_ledger.py`, 7/7 green on 2026-10-01 —
+acceptance; rejection records nothing (under-toll vows never touch disk);
+persistence across restart (2 vows, 455.0 $QQ treasury replayed);
+chain links (second record's `prev_hash` equals the first's `vow_hash`);
+tamper detected fail-closed (altered stake → `vow_hash mismatch`);
+malformed line fail-closed; durability without close (the etch hits disk
+before the call returns).
+
+**Result:** limit 1 of the red-pen list is resolved. The ledger outlives
+the process. Steps 2 (real PoW difficulty) and 3 (node keypair identity)
+remain ahead, in that order.
 
 ## License
 

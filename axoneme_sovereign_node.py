@@ -7,17 +7,23 @@ Description: Terminal dashboard for Zero-Trust vow registration and $QQ validati
 
 Source: architect-supplied draft PDF, 2026-10-01. Filed as a sketch;
 not yet a real node engine (see review notes alongside).
+
+Pioneer build, step 1: vows now persist to an append-only JSONL ledger
+(fsync'd per etch, hash-chained, fail-closed on corruption). Step 2 is
+real proof-of-work difficulty; step 3 is node keypair identity.
 """
-import hashlib
-import time
 import json
+import time
+from datetime import datetime, timezone
+
+from ledger import AppendOnlyLedger
 
 
 class AxonemeSovereignNode:
-    def __init__(self, node_id: str):
+    def __init__(self, node_id: str, ledger_path: str = "jorel.ledger.jsonl"):
         self.node_id = node_id
-        self.ledger = []
-        self.treasury_qq = 0.0
+        self.ledger = AppendOnlyLedger(ledger_path)
+        self.treasury_qq = sum(r["qq_consumed"] for r in self.ledger.records)
 
     def log_status(self, message: str):
         timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.gmtime())
@@ -32,29 +38,29 @@ class AxonemeSovereignNode:
                 f"REJECTED: Insufficient $QQ mass. Provided: {qq_toll}, Required: {required_toll}"
             )
             return False
-        # Generate cryptographic vow signature (Hash of stakes + timestamp)
-        raw_payload = f"{qira_stake}:{qash_stake}:{qq_toll}:{time.time()}"
-        vow_hash = hashlib.sha3_256(raw_payload.encode('utf-8')).hexdigest()
-        vow_record = {
-            "vow_hash": vow_hash,
+        body = {
+            "node_id": self.node_id,
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "qira_reserve": qira_stake,
             "qash_liquidity": qash_stake,
             "qq_consumed": qq_toll,
-            "status": "ETCHED_AMORAL_ANCHORAGE"
+            "status": "ETCHED_AMORAL_ANCHORAGE",
         }
-        self.ledger.append(vow_record)
+        vow_record = self.ledger.append(body)
         self.treasury_qq += qq_toll
-        self.log_status("SUCCESS: Vow successfully etched to Axon-FS ledger.")
+        self.log_status("SUCCESS: Vow etched to persistent ledger.")
         print(json.dumps(vow_record, indent=4))
         return True
 
     def display_dashboard(self):
+        chain = "VALID" if self.ledger.verify_chain() else "BROKEN"
         print("\n" + "=" * 50)
         print(" The Wizard, in the Emerald City of Oz, at the Crystal Palace.")
         print(f" AXONEME PROTOCOL TERMINAL DASHBOARD (Node: {self.node_id})")
         print("=" * 50)
-        print(f" Total Registered Vows: {len(self.ledger)}")
+        print(f" Total Registered Vows: {len(self.ledger.records)}")
         print(f" Accumulated $QQ Treasury: {self.treasury_qq}")
+        print(f" Ledger File: {self.ledger.path} (chain {chain})")
         print(" Qrystal Palace Enclave State: ONLINE (POPE Secured)")
         print("=" * 50 + "\n")
 
