@@ -35,7 +35,8 @@ def check(name, fn):
 def make_node():
     tmp = tempfile.mkdtemp()
     path = os.path.join(tmp, "node.ledger.jsonl")
-    node = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+    qpath = os.path.join(tmp, "node.qolocron.jsonl")
+    node = AxonemeSovereignNode("JOR-EL", ledger_path=path, qolocron_path=qpath)
     return node, tmp, path
 
 
@@ -99,7 +100,9 @@ def test_treasury_replayed_from_disk():
     try:
         quiet(node.register_vow, 100000.0, 50000.0, 155.0)
         quiet(node.register_vow, 200000.0, 100000.0, 300.0)
-        node2 = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+        node2 = AxonemeSovereignNode(
+            "JOR-EL", ledger_path=path,
+            qolocron_path=os.path.join(tmp, "node.qolocron.jsonl"))
         assert node2.treasury_qq == 455.0
         assert len(node2.ledger.records) == 2
         assert node2.verify() is True
@@ -118,7 +121,9 @@ def test_tampered_ledger_refuses_startup():
             handle.writelines(lines)
             handle.truncate()
         try:
-            AxonemeSovereignNode("JOR-EL", ledger_path=path)
+            AxonemeSovereignNode(
+                "JOR-EL", ledger_path=path,
+                qolocron_path=os.path.join(tmp, "node.qolocron.jsonl"))
         except LedgerCorruptError:
             return
         raise AssertionError("tampered ledger was loaded without error")
@@ -131,6 +136,7 @@ def test_cli_vow_accept_exit_code():
     try:
         path = os.path.join(tmp, "cli.ledger.jsonl")
         argv = ["--node-id", "JOR-EL", "--ledger", path,
+                "--qolocron", os.path.join(tmp, "cli.qolocron.jsonl"),
                 "vow", "--qira", "100000", "--qash", "50000", "--toll", "155"]
         assert quiet(main, argv) == EXIT_OK
     finally:
@@ -142,6 +148,7 @@ def test_cli_vow_reject_exit_code():
     try:
         path = os.path.join(tmp, "cli.ledger.jsonl")
         argv = ["--node-id", "JOR-EL", "--ledger", path,
+                "--qolocron", os.path.join(tmp, "cli.qolocron.jsonl"),
                 "vow", "--qira", "100000", "--qash", "50000", "--toll", "1"]
         assert quiet(main, argv) == EXIT_REJECTED
     finally:
@@ -152,7 +159,8 @@ def test_cli_verify_and_treasury():
     tmp = tempfile.mkdtemp()
     try:
         path = os.path.join(tmp, "cli.ledger.jsonl")
-        base = ["--node-id", "JOR-EL", "--ledger", path]
+        base = ["--node-id", "JOR-EL", "--ledger", path,
+                "--qolocron", os.path.join(tmp, "cli.qolocron.jsonl")]
         assert quiet(main, base + ["vow", "--qira", "1000",
                                    "--qash", "1000", "--toll", "2"]) == EXIT_OK
         assert quiet(main, base + ["verify"]) == EXIT_OK

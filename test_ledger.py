@@ -32,7 +32,7 @@ def fresh_path():
 
 def test_acceptance():
     path = fresh_path()
-    node = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+    node = AxonemeSovereignNode("JOR-EL", ledger_path=path, qolocron_path=path + ".qolocron")
     assert node.register_vow(100000.0, 50000.0, 155.0) is True
     assert len(node.ledger.records) == 1
     assert node.treasury_qq == 155.0
@@ -40,7 +40,7 @@ def test_acceptance():
 
 def test_rejection_records_nothing():
     path = fresh_path()
-    node = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+    node = AxonemeSovereignNode("JOR-EL", ledger_path=path, qolocron_path=path + ".qolocron")
     assert node.register_vow(200000.0, 100000.0, 250.0) is False  # needs 300
     assert len(node.ledger.records) == 0
     assert node.treasury_qq == 0.0
@@ -49,11 +49,11 @@ def test_rejection_records_nothing():
 
 def test_persistence_across_restart():
     path = fresh_path()
-    node = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+    node = AxonemeSovereignNode("JOR-EL", ledger_path=path, qolocron_path=path + ".qolocron")
     node.register_vow(100000.0, 50000.0, 155.0)
     node.register_vow(200000.0, 100000.0, 300.0)
     del node
-    node2 = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+    node2 = AxonemeSovereignNode("JOR-EL", ledger_path=path, qolocron_path=path + ".qolocron")
     assert len(node2.ledger.records) == 2
     assert node2.treasury_qq == 455.0
     assert node2.ledger.records[0]["seq"] == 1
@@ -62,7 +62,7 @@ def test_persistence_across_restart():
 
 def test_chain_links():
     path = fresh_path()
-    node = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+    node = AxonemeSovereignNode("JOR-EL", ledger_path=path, qolocron_path=path + ".qolocron")
     node.register_vow(100000.0, 50000.0, 155.0)
     node.register_vow(100000.0, 50000.0, 160.0)
     r1, r2 = node.ledger.records
@@ -73,7 +73,7 @@ def test_chain_links():
 
 def test_tamper_detected_fail_closed():
     path = fresh_path()
-    node = AxonemeSovereignNode("JOR-EL", ledger_path=path)
+    node = AxonemeSovereignNode("JOR-EL", ledger_path=path, qolocron_path=path + ".qolocron")
     node.register_vow(100000.0, 50000.0, 155.0)
     with open(path, "r+", encoding="utf-8") as handle:
         content = handle.read().replace("100000.0", "999999.0")

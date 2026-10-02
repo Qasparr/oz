@@ -11,6 +11,7 @@ Endpoints (all JSON):
   GET  /status            node state, chain validity, onion address (if any)
   POST /vow               {qira_reserve, qash_liquidity, qq_consumed}
                          -> 200 accepted | 402 toll insufficient
+                         (accepted vows are also piped to the Qolocron sink)
   GET  /tip               latest record {seq, vow_hash} (for future P2P sync)
   GET  /vow?hash=<hex>    one record | 404 unknown
 
@@ -121,6 +122,7 @@ class _Handler(BaseHTTPRequestHandler):
             datetime.timezone.utc).isoformat()
         record = node.ledger.append(body)
         node.treasury_qq += toll
+        node.archive_vow(record["vow_hash"])
         _json(self, 200, {
             "accepted": True,
             "seq": record["seq"],

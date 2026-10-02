@@ -30,7 +30,9 @@ def check(name, fn):
 def make_node():
     tmp = tempfile.mkdtemp()
     ledger = os.path.join(tmp, "t.ledger.jsonl")
-    return AxonemeSovereignNode("JOR-EL", ledger_path=ledger), tmp
+    qolocron = os.path.join(tmp, "t.qolocron.jsonl")
+    return AxonemeSovereignNode("JOR-EL", ledger_path=ledger,
+                                qolocron_path=qolocron), tmp
 
 
 def get(server, path):

@@ -309,6 +309,47 @@ consensus over onion remain unbuilt.
 When the P2P layer is designed, it is designed against this geometry
 unless the Architect rules otherwise.
 
+## XI. The Qolocron Sink — etched vow hashes archived to tri-state storage
+
+**Hypothesis:** that every etched vow deserves an heirloom copy — the
+vow_hash piped, at etch time, into the Qolocron crystal storage layer.
+The draft PDF left this as an open question; the Architect closed it:
+wire the sink.
+
+**Method:** `qolocron.py` — a `QolocronArchive`. Each 64-hex-char
+vow_hash (256 bits) is encoded to exactly 162 trits (base-3,
+least-significant first; 3**162 > 2**256 > 3**161, round-trip verified
+on every archive) and written through a triple-redundant tri-state
+lattice — the Axon cell mechanics (0/1/2, write-3x, majority-vote
+read-back), ported stdlib-only so this repo keeps no cross-repo runtime
+dependency. The entropy/crosstalk models were deliberately NOT ported:
+a sink that simulates its own rot would be theater; durability here
+comes from the fsync'd JSONL file, a per-line SHA3 integrity hash, and
+read-back verification. `register_vow()` archives post-etch, and the
+enclave's `POST /vow` does the same — both etch paths feed the sink.
+The archive map lives ALONGSIDE the ledger, never inside the hashed
+vow body: `ledger.py`'s verification is untouched.
+
+**Fail-closed contract:** archive failure never un-etches the vow and
+never stays silent — it is logged loudly and the hash lands in a retry
+backlog (`<archive>.backlog`); `sink --retry` drains it. A tampered
+archive raises `QolocronCorruptError` and the node refuses to start,
+exactly like a tampered ledger. The fence stands: this is virtual
+tri-state storage — the logic closes, the substrate is assumed,
+"immortal" remains aspiration.
+
+**Observation:** `test_qolocron.py`, 11/11 green — trit round-trips
+(incl. all-zero/all-one digests), garbage digests rejected, archive on
+etch with hash→address lookup, idempotent archive, failure→loud
+backlog with the vow still etched, backlog retry draining on recovery,
+persistence across restarts, tampered archive refusing startup, the
+enclave POST path archiving, and the `sink` CLI (`--verify`, `--retry`,
+`--lookup`). Full repo: 35/35 (ledger 7/7, enclave 7/7, node 10/10,
+qolocron 11/11).
+
+**Result:** the sink is wired and live. The dashboard reports archived
+count, integrity, and backlog pending.
+
 ## License
 
 AGPL-3.0-only. See `LICENSE`.
